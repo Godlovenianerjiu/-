@@ -23,11 +23,12 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
+            margin-top: 30px; /* 调整上边距以居中显示 */
         }
         label, input, select, button {
             width: 100%;
             padding: 10px;
-            margin-bottom: 10px;
+            margin: 15px 0; /* 增加上下间距 */
             border-radius: 5px;
             border: 1px solid #ddd;
         }
@@ -40,8 +41,9 @@
         button:hover {
             background-color: #0056b3;
         }
-        #result {
+        #daysRemaining, #result {
             margin-top: 20px;
+            font-size: 1.1em;
         }
     </style>
 </head>
@@ -49,14 +51,14 @@
     <div class="container">
         <h2>刷题倒计时计算器</h2>
         <div>
-            <label for="examDateOption">选择日期:</label>
+            <label for="examDateOption">考试日期:</label>
             <select id="examDateOption" onchange="selectDate()">
                 <option value="fixed">2024年4月13日</option>
                 <option value="custom">选择其他日期</option>
             </select>
         </div>
         <div id="customDateInput" style="display:none;">
-            <label for="examDate">考试日期:</label>
+            <label for="examDate">自选考试日期:</label>
             <input type="date" id="examDate" name="examDate">
         </div>
         <div>
@@ -84,6 +86,7 @@
             <input type="number" id="questionBank4" name="questionBank4" min="0" onchange="updateTotalQuestionsDone()">
         </div>
         <button onclick="calculate()">计算</button>
+        <div id="daysRemaining"></div> <!-- 显示距离考试天数 -->
         <div id="result"></div>
     </div>
 
@@ -130,6 +133,10 @@
             var currentDate = new Date();
             var timeDiff = examDate - currentDate;
             var daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+            // 显示距离考试天数
+            document.getElementById('daysRemaining').textContent = daysRemaining > 0 ? '距离考试还有 ' + daysRemaining + ' 天' : '考试时间已到或已过';
+
             if (daysRemaining > 0 && totalQuestions > questionsDone) {
                 var questionsPerDay = Math.ceil((totalQuestions - questionsDone) / daysRemaining);
                 document.getElementById('result').textContent = "您需要每天刷 " + questionsPerDay + " 题";
