@@ -6,93 +6,67 @@
     <title>刷题倒计时计算器</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
     <style>
-    body, html {
-        height: 100%;
-        margin: 0;
-        font-family: 'Nunito', sans-serif;
-        background-color: #f7f7f7;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px; /* 防止内容贴边 */
-    }
-    h2 {
-        text-align: center;
-        font-size: 2em; /* 增大标题字体 */
-        color: #007BFF; /* 为标题添加颜色 */
-        margin-bottom: 20px; /* 为标题添加下边距 */
-    }
-    .container {
-        width: 100%;
-        max-width: 600px;
-        padding: 0; /* 如果不需要内边距，可以设置为0 */
-    }
-    label, input, select, button {
-        width: 100%;
-        padding: 12px;
-        margin: 8px 0;
-        border-radius: 5px;
-        border: 1px solid #ddd;
-        font-size: 16px;
-    }
-    button {
-        color: #fff;
-        background-color: #007BFF;
-        border: none;
-        cursor: pointer;
-        margin-top: 20px; /* 为按钮添加上边距 */
-    }
-    button:hover {
-        background-color: #0056b3;
-    }
-    #result, #daysRemaining {
-        font-size: 1.1em;
-        text-align: center;
-        padding: 10px 0; /* 为结果添加内边距 */
-    }
-
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h2 {
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
         .question-banks {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            gap: 10px;
+            justify-content: center;
         }
         .question-bank {
-            width: calc(50% - 10px); /* 减去间隙保证两个输入框并排 */
+            flex: 0 0 calc(50% - 10px);
+            display: flex;
+            flex-direction: column;
+        }
+        label, input, select, button {
+            width: 100%;
+            padding: 12px;
             margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
-        /* 媒体查询确保在小屏幕上调整布局 */
-        @media (max-width: 600px) {
-            .question-bank {
-                width: 100%;
-            }
+        button {
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
         }
-    }
-</style>
-
-
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result, #daysRemaining {
+            font-size: 1.1em;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h2>刷题倒计时计算器</h2>
-        <div>
-            <label for="examDateOption">考试日期:</label>
-            <select id="examDateOption" onchange="selectDate()">
-                <option value="fixed">2024年4月13日</option>
-                <option value="custom">选择其他日期</option>
-            </select>
-        </div>
-        <div id="customDateInput" style="display:none;">
-            <label for="examDate">自选考试日期:</label>
-            <input type="date" id="examDate" name="examDate">
-        </div>
-        <div>
-            <label for="totalQuestions">题库题目总量:</label>
-            <input type="number" id="totalQuestions" name="totalQuestions" min="1">
-        </div>
-        <div>
-            <label for="questionsDone">已刷题目数:</label>
-            <input type="number" id="questionsDone" name="questionsDone" min="0">
-        </div>
+        <!-- 输入框和按钮 -->
+        <div class="question-banks">
+            <!-- 题库输入框 -->
             <div class="question-bank">
                 <label for="questionBank1">题库1已刷题目数:</label>
                 <input type="number" id="questionBank1" name="questionBank1" min="0" onchange="updateTotalQuestionsDone()">
@@ -109,10 +83,11 @@
                 <label for="questionBank4">题库4已刷题目数:</label>
                 <input type="number" id="questionBank4" name="questionBank4" min="0" onchange="updateTotalQuestionsDone()">
             </div>
-
+        </div>
+        <!-- 结果显示 -->
         <button onclick="calculate()">计算</button>
-        <div id="daysRemaining"></div> <!-- 显示距离考试天数 -->
         <div id="result"></div>
+        <div id="daysRemaining"></div>
     </div>
 
     <script>
