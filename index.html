@@ -18,8 +18,8 @@
             text-align: center;
         }
         .container {
-            width: 100%;
-            max-width: 600px;
+            width: 50%; /* 缩短宽度为屏幕宽度的一半 */
+            max-width: 300px; /* 也可以设置为具体的最大宽度 */
             margin: 20px;
             padding: 20px;
             box-sizing: border-box;
@@ -32,15 +32,13 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            justify-content: center;
+            justify-content: space-between;
         }
         .question-bank {
-            flex: 0 0 calc(50% - 10px);
-            display: flex;
-            flex-direction: column;
+            flex: 0 0 calc(50% - 10px); /* 调整宽度 */
         }
         label, input, select, button {
-            width: 100%;
+            width: 100%; /* 输入框宽度为容器宽度 */
             padding: 12px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
@@ -59,9 +57,14 @@
         #result, #daysRemaining {
             font-size: 1.1em;
         }
-        /* 增加额外的边距来防止边框重叠 */
-        .input-group {
-            margin-bottom: 20px; /* 增加底部边距 */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%; /* 在小屏幕上占更大的比例 */
+                max-width: none; /* 移除最大宽度限制 */
+            }
+            .question-bank {
+                flex: 0 0 100%; /* 在小屏幕上占满整行 */
+            }
         }
     </style>
 </head>
