@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>刷题倒计时计算器</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
-<style>
+    <style>
     body, html {
         height: 100%;
         margin: 0;
@@ -51,13 +51,20 @@
         padding: 10px 0; /* 为结果添加内边距 */
     }
 
-    /* 媒体查询针对小屏幕设备 */
-    @media (max-width: 600px) {
-        label, input, select, button {
-            font-size: 14px; /* 在小屏幕上减小字体大小 */
+        .question-banks {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
-        h2 {
-            font-size: 1.5em; /* 在小屏幕上减小标题字体 */
+        .question-bank {
+            width: calc(50% - 10px); /* 减去间隙保证两个输入框并排 */
+            margin-bottom: 10px;
+        }
+        /* 媒体查询确保在小屏幕上调整布局 */
+        @media (max-width: 600px) {
+            .question-bank {
+                width: 100%;
+            }
         }
     }
 </style>
@@ -86,22 +93,23 @@
             <label for="questionsDone">已刷题目数:</label>
             <input type="number" id="questionsDone" name="questionsDone" min="0">
         </div>
-        <div>
-            <label for="questionBank1">题库1已刷题目数:</label>
-            <input type="number" id="questionBank1" name="questionBank1" min="0" onchange="updateTotalQuestionsDone()">
-        </div>
-        <div>
-            <label for="questionBank2">题库2已刷题目数:</label>
-            <input type="number" id="questionBank2" name="questionBank2" min="0" onchange="updateTotalQuestionsDone()">
-        </div>
-        <div>
-            <label for="questionBank3">题库3已刷题目数:</label>
-            <input type="number" id="questionBank3" name="questionBank3" min="0" onchange="updateTotalQuestionsDone()">
-        </div>
-        <div>
-            <label for="questionBank4">题库4已刷题目数:</label>
-            <input type="number" id="questionBank4" name="questionBank4" min="0" onchange="updateTotalQuestionsDone()">
-        </div>
+            <div class="question-bank">
+                <label for="questionBank1">题库1已刷题目数:</label>
+                <input type="number" id="questionBank1" name="questionBank1" min="0" onchange="updateTotalQuestionsDone()">
+            </div>
+            <div class="question-bank">
+                <label for="questionBank2">题库2已刷题目数:</label>
+                <input type="number" id="questionBank2" name="questionBank2" min="0" onchange="updateTotalQuestionsDone()">
+            </div>
+            <div class="question-bank">
+                <label for="questionBank3">题库3已刷题目数:</label>
+                <input type="number" id="questionBank3" name="questionBank3" min="0" onchange="updateTotalQuestionsDone()">
+            </div>
+            <div class="question-bank">
+                <label for="questionBank4">题库4已刷题目数:</label>
+                <input type="number" id="questionBank4" name="questionBank4" min="0" onchange="updateTotalQuestionsDone()">
+            </div>
+
         <button onclick="calculate()">计算</button>
         <div id="daysRemaining"></div> <!-- 显示距离考试天数 -->
         <div id="result"></div>
