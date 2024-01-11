@@ -6,46 +6,61 @@
     <title>刷题倒计时计算器</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: 'Nunito', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f7f7f7;
-        }
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Nunito', sans-serif;
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        width: calc(100% - 40px); /* 留出一些边距 */
+        max-width: 600px;
+        margin: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    label, input, select, button {
+        width: 100%;
+        padding: 12px; /* 适当增加填充，使触摸更容易 */
+        margin: 8px 0; /* 适当减少间距 */
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        font-size: 16px; /* 增加字体大小，改善可读性 */
+    }
+    button {
+        color: #fff;
+        background-color: #007BFF;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    #result, #daysRemaining {
+        margin-top: 20px;
+        font-size: 1.1em;
+    }
+
+    /* 媒体查询针对小屏幕设备 */
+    @media (max-width: 600px) {
         .container {
             width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin-top: 30px; /* 调整上边距以居中显示 */
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 0; /* 移动设备上去掉圆角 */
         }
         label, input, select, button {
-            width: 100%;
-            padding: 10px;
-            margin: 15px 0; /* 增加上下间距 */
-            border-radius: 5px;
-            border: 1px solid #ddd;
+            margin: 10px 0; /* 为小屏幕增加一点间距 */
         }
-        button {
-            color: #fff;
-            background-color: #007BFF;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        #daysRemaining, #result {
-            margin-top: 20px;
-            font-size: 1.1em;
-        }
-    </style>
+    }
+</style>
+
 </head>
 <body>
     <div class="container">
