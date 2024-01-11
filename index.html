@@ -59,14 +59,35 @@
         #result, #daysRemaining {
             font-size: 1.1em;
         }
+        /* 增加额外的边距来防止边框重叠 */
+        .input-group {
+            margin-bottom: 20px; /* 增加底部边距 */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>刷题倒计时计算器</h2>
-        <!-- 输入框和按钮 -->
+        <div class="input-group">
+            <label for="examDateOption">考试日期:</label>
+            <select id="examDateOption" onchange="selectDate()">
+                <option value="fixed">2024年4月13日</option>
+                <option value="custom">选择其他日期</option>
+            </select>
+        </div>
+        <div class="input-group" id="customDateInput" style="display:none;">
+            <label for="examDate">自选考试日期:</label>
+            <input type="date" id="examDate" name="examDate">
+        </div>
+        <div class="input-group">
+            <label for="totalQuestions">题库题目总量:</label>
+            <input type="number" id="totalQuestions" name="totalQuestions" min="1">
+        </div>
+        <div class="input-group">
+            <label for="questionsDone">已刷题目数:</label>
+            <input type="number" id="questionsDone" name="questionsDone" min="0">
+        </div>
         <div class="question-banks">
-            <!-- 题库输入框 -->
             <div class="question-bank">
                 <label for="questionBank1">题库1已刷题目数:</label>
                 <input type="number" id="questionBank1" name="questionBank1" min="0" onchange="updateTotalQuestionsDone()">
@@ -84,7 +105,6 @@
                 <input type="number" id="questionBank4" name="questionBank4" min="0" onchange="updateTotalQuestionsDone()">
             </div>
         </div>
-        <!-- 结果显示 -->
         <button onclick="calculate()">计算</button>
         <div id="result"></div>
         <div id="daysRemaining"></div>
@@ -134,7 +154,6 @@
             var timeDiff = examDate - currentDate;
             var daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-            // 显示距离考试天数
             document.getElementById('daysRemaining').textContent = daysRemaining > 0 ? '距离考试还有 ' + daysRemaining + ' 天' : '考试时间已到或已过';
 
             if (daysRemaining > 0 && totalQuestions > questionsDone) {
