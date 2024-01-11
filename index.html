@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>刷题倒计时计算器</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
-    <style>
+<style>
     body, html {
         height: 100%;
         margin: 0;
@@ -14,52 +14,54 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 10px; /* 防止内容贴边 */
+    }
+    h2 {
+        text-align: center;
+        font-size: 2em; /* 增大标题字体 */
+        color: #007BFF; /* 为标题添加颜色 */
+        margin-bottom: 20px; /* 为标题添加下边距 */
     }
     .container {
-        width: calc(100% - 40px); /* 留出一些边距 */
+        width: 100%;
         max-width: 600px;
-        margin: 20px;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
+        padding: 0; /* 如果不需要内边距，可以设置为0 */
     }
     label, input, select, button {
         width: 100%;
-        padding: 12px; /* 适当增加填充，使触摸更容易 */
-        margin: 8px 0; /* 适当减少间距 */
+        padding: 12px;
+        margin: 8px 0;
         border-radius: 5px;
         border: 1px solid #ddd;
-        font-size: 16px; /* 增加字体大小，改善可读性 */
+        font-size: 16px;
     }
     button {
         color: #fff;
         background-color: #007BFF;
         border: none;
         cursor: pointer;
+        margin-top: 20px; /* 为按钮添加上边距 */
     }
     button:hover {
         background-color: #0056b3;
     }
     #result, #daysRemaining {
-        margin-top: 20px;
         font-size: 1.1em;
+        text-align: center;
+        padding: 10px 0; /* 为结果添加内边距 */
     }
 
     /* 媒体查询针对小屏幕设备 */
     @media (max-width: 600px) {
-        .container {
-            width: 100%;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            border-radius: 0; /* 移动设备上去掉圆角 */
-        }
         label, input, select, button {
-            margin: 10px 0; /* 为小屏幕增加一点间距 */
+            font-size: 14px; /* 在小屏幕上减小字体大小 */
+        }
+        h2 {
+            font-size: 1.5em; /* 在小屏幕上减小标题字体 */
         }
     }
 </style>
+
 
 </head>
 <body>
